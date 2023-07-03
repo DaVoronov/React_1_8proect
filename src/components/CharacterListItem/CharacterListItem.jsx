@@ -1,11 +1,13 @@
+import styles from "./CharacterListItem.module.css";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 
 function CharacterListItem({ character }) {
   return (
-    <Card>
+    <Card className={styles.Grow}>
       <CardMedia
         component="img"
-        src={`rickandmortyapi.com/api/character/avatar/${character.url}`}
+        width={1}
+        src={character.image}
         alt={character.name}
       />
       <CardContent>

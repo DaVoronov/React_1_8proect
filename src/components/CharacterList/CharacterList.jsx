@@ -1,9 +1,10 @@
 import CharacterListItem from "../CharacterListItem/CharacterListItem";
+import "/src/index.css";
 
 function CharacterList({ characters }) {
   return (
     <div>
-      <ul>
+      <ul className="CharacterList">
         {characters.map((character) => (
           <CharacterListItem
             key={character.id}
