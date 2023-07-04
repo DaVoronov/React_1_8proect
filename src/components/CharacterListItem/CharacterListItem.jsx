@@ -14,9 +14,20 @@ function CharacterListItem({ character }) {
         <Typography gutterBottom variant="h4" component="h2">
           {character.name}
         </Typography>
-        <Typography gutterBottom variant="h6" component="h4">
-          {character.status}/{character.species}/{character.gender}
-        </Typography>
+        <div className={styles.textColumn}>
+          <Typography gutterBottom variant="h6" component="h4">
+            Species: {character.species}
+          </Typography>
+          <Typography gutterBottom variant="h6" component="h4">
+            Gender: {character.gender}
+          </Typography>
+          <Typography gutterBottom variant="h6" component="h4">
+            Origin: {character.origin.name}
+          </Typography>
+          <Typography gutterBottom variant="h6" component="h4">
+            Status: {character.status}
+          </Typography>
+        </div>
       </CardContent>
     </Card>
   );

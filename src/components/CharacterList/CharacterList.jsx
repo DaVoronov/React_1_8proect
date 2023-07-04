@@ -1,10 +1,10 @@
+import styles from "./CharacterList.module.css";
 import CharacterListItem from "../CharacterListItem/CharacterListItem";
-import "/src/index.css";
 
 function CharacterList({ characters }) {
   return (
     <div>
-      <ul className="CharacterList">
+      <ul className={styles.CharacterList}>
         {characters.map((character) => (
           <CharacterListItem
             key={character.id}
@@ -12,6 +12,7 @@ function CharacterList({ characters }) {
             status={character.status}
             species={character.species}
             gender={character.gender}
+            origin={character.origin.name}
             character={character}
           />
         ))}

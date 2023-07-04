@@ -6,3 +6,9 @@
 .Grow:hover {
   transform: scale(1.1);
 }
+
+.textColumn {
+  display: flex;
+  flex-direction: column;
+  text-decoration: underline;
+}
