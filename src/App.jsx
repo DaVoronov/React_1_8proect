@@ -8,9 +8,10 @@ import CharacterList from "./components/CharacterList/CharacterList";
 
 function App() {
   const [characters, setCharacters] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [characterNotFound, setCharacterNotFound] = useState(false);
 
   useEffect(() => {
     const fetchCharacters = async () => {
@@ -28,20 +29,25 @@ function App() {
     fetchCharacters();
   }, [page]);
 
-  const fetchCharacters = async () => {
-    try {
-      const response = await axios.get(
-        `https://rickandmortyapi.com/api/character/?name=${searchTerm}`
-      );
-      setCharacters(response.data.results);
-    } catch (error) {
-      console.error("Error fetching characters:", error);
-    }
-  };
+  const handleChange = async (e) => {
+    setSearchTerm(e.target.value);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    fetchCharacters();
+    try {
+      const response = await fetch(
+        `https://rickandmortyapi.com/api/character?name=${e.target.value}`
+      );
+      const data = await response.json();
+
+      if (data.results.length > 0) {
+        setCharacters(data.results);
+        setCharacterNotFound(false);
+      } else {
+        setCharacters([]);
+        setCharacterNotFound(true);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   const handlePrevPage = () => {
@@ -56,17 +62,23 @@ function App() {
     <div className="Flex">
       {loading && <Loader />}
 
-      <div>
-        <form onSubmit={handleSearch}>
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Enter character name"
-          />
-          <button type="submit">Search</button>
-        </form>
-      </div>
+      <input
+        className="Searcher"
+        type="text"
+        value={searchTerm}
+        onChange={handleChange}
+        placeholder="Search characters: "
+      />
+
+      <Container sx={{ py: "24px" }}>
+        <Typography variant="h3" my={5} textAlign={"center"}>
+          Rick & Morty characters
+        </Typography>
+
+        {characterNotFound && <p>Character not found!</p>}
+
+        <CharacterList characters={characters} />
+      </Container>
 
       <div className="BtnCenter">
         <Button
@@ -87,14 +99,6 @@ function App() {
           Next
         </Button>
       </div>
-
-      <Container sx={{ py: "24px" }}>
-        <Typography variant="h3" my={5} textAlign={"center"}>
-          Rick & Morty characters
-        </Typography>
-
-        <CharacterList characters={characters} />
-      </Container>
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import styles from "./CharacterListItem.module.css";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 
-function CharacterListItem({ character }) {
+function CharacterListItem({ character, onClick }) {
   return (
-    <Card className={styles.Grow}>
+    <Card onClick={onClick} className={styles.Grow}>
       <CardMedia
         component="img"
         width={1}

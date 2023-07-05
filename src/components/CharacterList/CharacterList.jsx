@@ -1,9 +1,25 @@
+import { useState } from "react";
+
 import styles from "./CharacterList.module.css";
 import CharacterListItem from "../CharacterListItem/CharacterListItem";
 
-function CharacterList({ characters }) {
+import Modal from "../Modal/Modal";
+
+function CharacterList({ characters, onClick }) {
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = (character) => {
+    setSelectedCharacter(character);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
-    <div>
+    <div onClick={onClick}>
       <ul className={styles.CharacterList}>
         {characters.map((character) => (
           <CharacterListItem
@@ -13,10 +29,14 @@ function CharacterList({ characters }) {
             species={character.species}
             gender={character.gender}
             origin={character.origin.name}
+            onClick={() => openModal(character)}
             character={character}
           />
         ))}
       </ul>
+      {showModal && (
+        <Modal character={selectedCharacter} onClose={closeModal} />
+      )}
     </div>
   );
 }
