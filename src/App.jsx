@@ -62,13 +62,17 @@ function App() {
     <div className="Flex">
       {loading && <Loader />}
 
-      <input
-        className="Searcher"
-        type="text"
-        value={searchTerm}
-        onChange={handleChange}
-        placeholder="Search characters: "
-      />
+      <div>
+        <img src="" alt="" />
+
+        <input
+          className="Searcher"
+          type="text"
+          value={searchTerm}
+          onChange={handleChange}
+          placeholder="Search characters: "
+        />
+      </div>
 
       <Container sx={{ py: "24px" }}>
         <Typography variant="h3" my={5} textAlign={"center"}>
@@ -84,7 +88,6 @@ function App() {
         <Button
           onClick={handlePrevPage}
           variant="contained"
-          className="btn"
           disabled={page === 1}
         >
           Previous
@@ -93,7 +96,6 @@ function App() {
         <Button
           onClick={handleNextPage}
           variant="contained"
-          className="btn"
           disabled={page === 42}
         >
           Next

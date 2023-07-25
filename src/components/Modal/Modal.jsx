@@ -15,8 +15,8 @@ const Modal = ({ character, onClose }) => {
         <button className={styles.BtnClose} onClick={onClose}>
           X
         </button>
-        <img src={character.image} alt={character.name} />
         <div className={styles.CharacterDescriptionCenter}>
+          <img src={character.image} alt={character.name} />
           <h2>{character.name}</h2>
           <p>Status: {character.status}</p>
           <p>Species: {character.species}</p>

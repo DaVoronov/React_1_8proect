@@ -17,19 +17,25 @@
 }
 
 .CharacterDescription {
-  text-align: right;
+  display: flex;
+  justify-content: end;
   padding: 5px;
   width: 800px;
-  background-color: rgb(77, 76, 76);
 }
+
 .CharacterDescriptionCenter {
-  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  font-size: 18px;
+  background-color: grey;
 }
 
 .BtnClose {
   position: relative;
   left: 330px;
-  bottom: 310px;
+  bottom: 30px;
   font-size: 18px;
   width: 30px;
   height: 30px;
