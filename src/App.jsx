@@ -62,9 +62,7 @@ function App() {
     <div className="Flex">
       {loading && <Loader />}
 
-      <div>
-        <img src="" alt="" />
-
+      <div className="Sticky">
         <input
           className="Searcher"
           type="text"

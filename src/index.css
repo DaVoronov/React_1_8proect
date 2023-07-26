@@ -2,10 +2,32 @@
   display: flex;
   justify-content: center;
   align-items: "center";
+  padding-bottom: 20px;
 }
 
 .pageCount {
   padding: 20px;
+}
+
+/* .Header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: grey;
+
+  top: 20px;
+  position: sticky;
+  z-index: 120000;
+  width: 900px;
+  height: 50px;
+  margin: 0 auto;
+  border-radius: 4px;
+} */
+
+.Sticky {
+  top: 20px;
+  position: sticky;
+  z-index: 1199;
 }
 
 .Searcher {
