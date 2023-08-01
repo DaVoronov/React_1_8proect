@@ -29,6 +29,7 @@ function CharacterList({ characters, onClick }) {
             species={character.species}
             gender={character.gender}
             origin={character.origin.name}
+            location={character.location.name}
             episode={character.episode}
             onClick={() => openModal(character)}
             character={character}

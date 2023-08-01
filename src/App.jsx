@@ -1,5 +1,5 @@
 import { Container, Typography, Button } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import axios from "axios";
 
 import "/src/index.css";
@@ -7,6 +7,9 @@ import Loader from "./components/Loader/Loader";
 import CharacterList from "./components/CharacterList/CharacterList";
 
 function App() {
+  const ref = useRef(null);
+  const refs = useRef(null);
+
   const [characters, setCharacters] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -58,21 +61,33 @@ function App() {
     setPage(page + 1);
   };
 
+  const handleClickDown = () => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleClickUp = () => {
+    refs.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="Flex">
       {loading && <Loader />}
 
-      <div className="Sticky">
-        <input
-          className="Searcher"
-          type="text"
-          value={searchTerm}
-          onChange={handleChange}
-          placeholder="Search characters: "
-        />
-      </div>
+      <Container ref={refs} sx={{ py: "24px" }}>
+        <header className="Header">
+          <div className="Sticky">
+            <img className="ImgIcon" src="/public/Rick&Morty_Icon.png" alt="" />
 
-      <Container sx={{ py: "24px" }}>
+            <input
+              className="Searcher"
+              type="text"
+              value={searchTerm}
+              onChange={handleChange}
+              placeholder="Search characters: "
+            />
+          </div>
+        </header>
+
         <Typography variant="h3" my={5} textAlign={"center"}>
           Rick & Morty characters
         </Typography>
@@ -82,7 +97,17 @@ function App() {
         <CharacterList characters={characters} />
       </Container>
 
-      <div className="BtnCenter">
+      <div className="BtnUpDown">
+        <button className="BtnDown" onClick={handleClickDown}>
+          ▼
+        </button>
+
+        <button className="BtnUp" onClick={handleClickUp}>
+          ▲
+        </button>
+      </div>
+
+      <div ref={ref} className="BtnCenter">
         <Button
           onClick={handlePrevPage}
           variant="contained"

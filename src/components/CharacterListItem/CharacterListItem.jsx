@@ -2,6 +2,17 @@ import styles from "./CharacterListItem.module.css";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 
 function CharacterListItem({ character, onClick }) {
+  const getTextColor = (status) => {
+    switch (status) {
+      case "Dead":
+        return "red";
+      case "Alive":
+        return "green";
+      default:
+        return "grey";
+    }
+  };
+
   return (
     <Card onClick={onClick} className={styles.Grow}>
       <CardMedia
@@ -10,22 +21,32 @@ function CharacterListItem({ character, onClick }) {
         src={character.image}
         alt={character.name}
       />
+      <h3
+        className="Status"
+        style={{
+          position: "relative",
+          bottom: "270px",
+          left: "150px",
+          textAlign: "center",
+          borderRadius: "6px",
+          background: getTextColor(character.status),
+          width: "100px",
+          height: "30px",
+          marginBottom: "-50px",
+        }}
+      >
+        {character.status}
+      </h3>
       <CardContent>
-        <Typography gutterBottom variant="h4" component="h2">
-          {character.name}
-        </Typography>
+        <div>
+          <Typography gutterBottom variant="h5" component="h3">
+            {character.name}
+          </Typography>
+        </div>
         <div className={styles.textColumn}>
-          <Typography gutterBottom variant="h6" component="h4">
-            Species: {character.species}
-          </Typography>
-          <Typography gutterBottom variant="h6" component="h4">
-            Gender: {character.gender}
-          </Typography>
-          <Typography gutterBottom variant="h6" component="h4">
-            Origin: {character.origin.name}
-          </Typography>
-          <Typography gutterBottom variant="h6" component="h4">
-            Status: {character.status}
+          <p>Last location</p>
+          <Typography gutterBottom variant="h6" component="h3">
+            {character.location.name}
           </Typography>
         </div>
       </CardContent>
