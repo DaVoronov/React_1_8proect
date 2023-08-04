@@ -55,10 +55,14 @@ function App() {
 
   const handlePrevPage = () => {
     setPage(page - 1);
+
+    window.scrollTo(0, 0);
   };
 
   const handleNextPage = () => {
     setPage(page + 1);
+
+    window.scrollTo(0, 0);
   };
 
   const handleClickDown = () => {

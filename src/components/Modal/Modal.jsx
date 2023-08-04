@@ -41,18 +41,3 @@ const Modal = ({ character, onClose }) => {
 };
 
 export default Modal;
-
-{
-  /* <Typography gutterBottom variant="h6" component="h4">
-Species: {character.species}
-</Typography>
-<Typography gutterBottom variant="h6" component="h4">
-Gender: {character.gender}
-</Typography>
-<Typography gutterBottom variant="h6" component="h4">
-Origin: {character.origin.name}
-</Typography>
-<Typography gutterBottom variant="h6" component="h4">
-Status: {character.status}
-</Typography> */
-}
